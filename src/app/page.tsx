@@ -11,6 +11,7 @@ export default function Home() {
   const [cityCount, setCityCount] = useState(10);
   const [typedText, setTypedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [homeData, setHomeData] = useState<any>(null);
   const fullTitle = 'ResQsync';
 
   useEffect(() => {
@@ -24,6 +25,15 @@ export default function Home() {
         setIsTypingComplete(true);
       }
     }, 150);
+
+    // Fetch live Homepage data from MongoDB
+    fetch('/api/homepage')
+      .then(res => res.json())
+      .then(data => {
+        setHomeData(data);
+      })
+      .catch(err => console.warn('Could not fetch MongoDB homepage data:', err));
+
     return () => clearInterval(timer);
   }, []);
 

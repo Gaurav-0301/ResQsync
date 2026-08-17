@@ -74,22 +74,36 @@ const generateDemoData = () => {
 export default function DashboardPage() {
     const { isHighConfidence, currentDetection, confidenceLevel } = useDetection();
     const [mounted, setMounted] = useState(false);
+    const [dbSource, setDbSource] = useState<'mongodb' | 'fallback_local'>('fallback_local');
+    const [dbAlerts, setDbAlerts] = useState<any[]>([]);
 
     useEffect(() => {
         setMounted(true);
+        fetch('/api/dashboard')
+            .then(res => res.json())
+            .then(data => {
+                if (data.source) {
+                    setDbSource(data.source);
+                }
+                if (Array.isArray(data.alerts) && data.alerts.length > 0) {
+                    setDbAlerts(data.alerts);
+                }
+            })
+            .catch(err => console.warn('Could not fetch MongoDB dashboard data:', err));
     }, []);
 
-    const data = useMemo(() => generateDemoData(), []);
-    const { timeSeriesData, locationData, vehicleTypes, performanceMetrics, alerts } = data;
+    const demoData = useMemo(() => generateDemoData(), []);
+    const { timeSeriesData, locationData, vehicleTypes, performanceMetrics, alerts: fallbackAlerts } = demoData;
+    const alerts = dbAlerts.length > 0 ? dbAlerts : fallbackAlerts;
 
     const exportToCSV = () => {
         const csvData = alerts.map(alert => ({
             Timestamp: new Date(alert.timestamp).toISOString(),
             Type: alert.type,
-            Severity: alert.severity,
+            Severity: alert.severity || 'Critical',
             Location: alert.location,
-            Description: alert.description,
-            Confidence: `${(alert.confidence * 100).toFixed(2)}%`
+            Description: alert.description || `Incident detected: ${alert.type}`,
+            Confidence: `${((alert.confidence || 0.95) * 100).toFixed(2)}%`
         }));
 
         const ws = XLSX.utils.json_to_sheet(csvData);
@@ -104,9 +118,16 @@ export default function DashboardPage() {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-                            ResQsync Control Center
-                        </h1>
+                        <div className="flex items-center gap-3">
+                            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+                                ResQsync Control Center
+                            </h1>
+                            <span className={`px-2.5 py-1 text-[11px] font-bold rounded-full border ${
+                                dbSource === 'mongodb' ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-700 border-slate-300'
+                            }`}>
+                                {dbSource === 'mongodb' ? '🍃 MongoDB Connected' : '💾 Hybrid Storage (Local & DB Sync)'}
+                            </span>
+                        </div>
                         <p className="text-slate-600 text-sm font-medium mt-1">Real-time traffic intelligence and emergency response dashboard</p>
                     </div>
                     <button
