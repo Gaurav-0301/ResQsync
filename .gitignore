@@ -1,0 +1,34 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# build & testing
+/.next/
+/out/
+/build/
+/coverage/
+
+# environment secrets
+.env
+.env.*
+!.env.example
+
+# logs & temporary/backup files
+*.log
+*.log*
+*.bak
+pip_log*.txt
+*.tmp
+
+# OS & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
