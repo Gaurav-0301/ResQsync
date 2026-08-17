@@ -1,0 +1,9 @@
+# ESP32-CAM Backend Server Dependencies
+fastapi
+uvicorn
+opencv-python-headless
+numpy
+Pillow
+requests
+websockets
+python-multipart
