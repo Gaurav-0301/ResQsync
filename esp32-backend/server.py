@@ -65,9 +65,9 @@ ESP32_CAPTURE_URL = f"http://{ESP32_IP}/capture"
 # Email Configuration
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 465  # SSL Port (more reliable)
-SENDER_EMAIL = "dineshkuttan78@gmail.com"  # ⚠️ RESQSYNC: Replace with your Gmail
-SENDER_PASSWORD = "tebc irmm pbjv bxzp"  # ⚠️ RESQSYNC: Replace with App Password
-RECIPIENT_EMAIL = "vishalraajdnd@gmail.com"
+SENDER_EMAIL = "dineshkuttan78@gmail.com"  # RESQSYNC Sender
+SENDER_PASSWORD = "tebc irmm pbjv bxzp"  # App Password
+RECIPIENT_EMAIL = "harshvardhanpadul73@gmail.com"  # Controller Room Email
 
 # Detection classes
 CLASSES = [
