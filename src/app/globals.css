@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  /* Clean Professional Palette */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+
+  --color-accent-teal: #0f766e;
+  --color-accent-rose: #dc2626;
+  --color-accent-cyan: #0284c7;
+  --color-accent-blue: #2563eb;
+  --color-accent-purple: #4f46e5;
+  --color-accent-violet: #4338ca;
+  --color-accent-green: #16a34a;
+  --color-accent-amber: #d97706;
+  --color-accent-orange: #ea580c;
+
+  --font-sans: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  font-family: var(--font-space), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Minimal Crisp Card Style */
+@utility glass-card {
+  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+}
+
+@utility glass-card-hover {
+  @apply glass-card;
+}
+
+@utility liquid-glow {
+  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+}
+
+@utility clay-button {
+  @apply rounded-lg font-medium transition-colors duration-150;
+}
+
+@utility clay-icon {
+  @apply rounded-xl flex items-center justify-center bg-slate-100 text-slate-700;
+}
+
+@utility clay-badge {
+  @apply rounded-md px-2.5 py-1 text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-200;
+}
+
+@utility clay-input {
+  @apply rounded-lg px-4 py-2.5 bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-slate-500;
+}
+
+@utility clay-section {
+  @apply rounded-2xl border border-slate-200 bg-white p-8 shadow-sm;
+}
+
+@keyframes blink-caret {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #dc2626; }
+}
+
+body {
+  @apply bg-[#f8fafc] text-slate-900;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Leaflet popups */
+.glass-popup .leaflet-popup-content-wrapper {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  padding: 0;
+  overflow: hidden;
+  color: #0f172a;
+}
+
+.glass-popup .leaflet-popup-tip {
+  background: #ffffff;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.2);
+  border-radius: 4px;
+}
