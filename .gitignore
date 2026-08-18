@@ -21,6 +21,7 @@
 *.bak
 pip_log*.txt
 *.tmp
+scratch/
 
 # OS & IDE files
 .DS_Store
