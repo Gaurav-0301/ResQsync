@@ -3,6 +3,8 @@
 import AnimatedCounter from '@/components/AnimatedCounter';
 import ProjectKStory from '@/components/ProjectKStory';
 import Roadmap from '@/components/Roadmap';
+import NationalStatCard from '@/components/NationalStatCard';
+import VerifiedCasesSection from '@/components/VerifiedCasesSection';
 import { AlertTriangle, Brain, Zap, Shield, Activity, ArrowRight, Clock, MapPin, Building2, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -60,19 +62,9 @@ export default function Home() {
               </p>
             </div>
 
-
-
             {/* Live Statistics Card */}
-            <div className="border border-slate-200 bg-white rounded-xl p-6 mb-10 max-w-md w-full shadow-sm text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
-                <span className="text-slate-600 text-xs font-semibold uppercase tracking-wider">Estimated Lives Lost Today (National)</span>
-              </div>
-              <div className="text-4xl font-extrabold text-slate-900 my-1">
-                <AnimatedCounter end={Math.floor((new Date().getHours() * 60 + new Date().getMinutes()) * 415 / 1440)} duration={2} />
-              </div>
-              <div className="text-xs text-slate-500 font-medium">Average 1 road casualty every 3.8 minutes</div>
-            </div>
+            <NationalStatCard />
+
 
             {/* Key Performance Indicators */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl mb-10">
@@ -105,126 +97,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* REAL NAGPUR INCIDENT DATA SECTION */}
-        <section className="py-16 px-6 md:px-16 border-t border-slate-200 bg-white">
-          <div className="max-w-5xl mx-auto">
-            <div className="flex items-center gap-2 mb-3">
-              <MapPin className="w-5 h-5 text-red-600" />
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-red-600">Field Analysis & Local Data</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-              Case Analysis: Emergency Transit Obstructions in Nagpur
-            </h2>
-            <p className="text-slate-600 text-base mb-10 max-w-3xl">
-              Documented incidents from Nagpur reveal that emergency response failure is rarely caused by hospital distance, but by traffic gridlocks at key arterial junctions.
-            </p>
+        {/* VERIFIED GROUND TRUTH INCIDENT & CONGESTION SECTION */}
+        <VerifiedCasesSection />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-              {/* Nagpur Incident Card 1 */}
-              <div className="border border-slate-200 bg-slate-50 p-6 rounded-xl">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold font-mono px-2.5 py-1 bg-red-100 text-red-800 rounded border border-red-200">
-                    NAGPUR CENTRAL
-                  </span>
-                  <span className="text-xs text-slate-500 font-medium">GMCH Access Route</span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  Medical Square Junction Gridlock
-                </h3>
-                <p className="text-sm text-slate-600 mb-4 leading-relaxed">
-                  Medical Square connects six major arterial avenues directly adjacent to Government Medical College & Hospital (GMCH). Peak-hour congestion regularly traps emergency ambulances for up to 25–40 minutes across a 1.2 km stretch, causing critical delays for trauma patients during the golden hour.
-                </p>
-                <div className="bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700 font-medium">
-                  <strong>Documented Case:</strong> Critical medical emergencies navigating Medical Square experience an average speed drop to under 4 km/h due to uncoordinated 30-second fixed signal cycles.
-                </div>
-              </div>
-
-              {/* Nagpur Incident Card 2 */}
-              <div className="border border-slate-200 bg-slate-50 p-6 rounded-xl">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold font-mono px-2.5 py-1 bg-red-100 text-red-800 rounded border border-red-200">
-                    AJNI CORRIDOR
-                  </span>
-                  <span className="text-xs text-slate-500 font-medium">Infrastructure Choking</span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  Ajni Underpass & Railway Diversion Delays
-                </h3>
-                <p className="text-sm text-slate-600 mb-4 leading-relaxed">
-                  During road work and underpass construction near Ajni Railway Station, sudden traffic diversions forced high-volume traffic into narrow bypasses. Emergency ambulances carrying acute care patients were trapped without physical room for preceding traffic to yield.
-                </p>
-                <div className="bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700 font-medium">
-                  <strong>Documented Fatalities:</strong> Reports in Nagpur highlight cases where patients passed away during transit or upon arrival due to delayed emergency response caused by severe traffic congestion.
-                </div>
-              </div>
-            </div>
-
-            {/* Detailed Data Table for Nagpur Corridors */}
-            <div className="border border-slate-200 rounded-xl overflow-hidden bg-white">
-              <div className="p-4 bg-slate-100 border-b border-slate-200 font-bold text-sm text-slate-900">
-                Critical Emergency Corridors — Nagpur Traffic Metrics
-              </div>
-              <div className="divide-y divide-slate-100">
-                <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Location</div>
-                    <div className="font-bold text-slate-900 mt-1">Medical Square → GMCH</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Normal Transit Time</div>
-                    <div className="font-bold text-slate-900 mt-1">3 Minutes (800m)</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Peak Congestion Time</div>
-                    <div className="font-bold text-red-600 mt-1">22 - 35 Minutes</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">ResQsync Green Corridor Target</div>
-                    <div className="font-bold text-emerald-600 mt-1">1.5 Minutes</div>
-                  </div>
-                </div>
-
-                <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs bg-slate-50/50">
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Location</div>
-                    <div className="font-bold text-slate-900 mt-1">Wardha Road → Ajni Junction</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Normal Transit Time</div>
-                    <div className="font-bold text-slate-900 mt-1">5 Minutes (2.4km)</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Peak Congestion Time</div>
-                    <div className="font-bold text-red-600 mt-1">28 - 45 Minutes</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">ResQsync Green Corridor Target</div>
-                    <div className="font-bold text-emerald-600 mt-1">3.0 Minutes</div>
-                  </div>
-                </div>
-
-                <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Location</div>
-                    <div className="font-bold text-slate-900 mt-1">Central Avenue → Itwari</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Normal Transit Time</div>
-                    <div className="font-bold text-slate-900 mt-1">4 Minutes (1.5km)</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">Peak Congestion Time</div>
-                    <div className="font-bold text-red-600 mt-1">25 - 40 Minutes</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 font-semibold uppercase">ResQsync Green Corridor Target</div>
-                    <div className="font-bold text-emerald-600 mt-1">2.0 Minutes</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* SYSTEM ARCHITECTURE & CORE CAPABILITIES */}
         <section className="py-16 px-6 md:px-16 border-t border-slate-200">
