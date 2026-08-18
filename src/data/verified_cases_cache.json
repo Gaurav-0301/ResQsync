@@ -1,0 +1,15 @@
+{
+  "cases": [],
+  "congestionPoints": [
+    {
+      "id": "risk-ajni-underpass",
+      "junctionName": "Ajni Railway Underpass & Corridor Diversion",
+      "details": "Infrastructure construction and narrow railway bypasses force high-density traffic into single-lane funnels, creating acute bottlenecks for trauma transit.",
+      "connectingRoads": "Ajni Main Road, Railway Station Feeder Corridor",
+      "source": "Nagpur Municipal Corporation Mobility Cell",
+      "sourceUrl": "https://nmc.gov.in",
+      "verified": true
+    }
+  ],
+  "fetchedAt": "2026-08-18T02:42:51.558Z"
+}
